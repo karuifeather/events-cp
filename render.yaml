@@ -15,7 +15,7 @@ services:
           name: anime-atlas-db
           property: connectionString
 
- databases:
+databases:
   - name: anime-atlas-db
     databaseName: anime_atlas
     user: anime_atlas
