@@ -1,0 +1,22 @@
+services:
+  - type: web
+    name: anime-atlas
+    runtime: node
+    plan: free
+    region: oregon
+    buildCommand: npm install && npm run build
+    startCommand: npm start
+    healthCheckPath: /api/health
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: DATABASE_URL
+        fromDatabase:
+          name: anime-atlas-db
+          property: connectionString
+
+ databases:
+  - name: anime-atlas-db
+    databaseName: anime_atlas
+    user: anime_atlas
+    plan: free
