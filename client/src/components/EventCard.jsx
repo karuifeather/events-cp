@@ -1,10 +1,20 @@
 function formatEventDate(eventDate) {
+  if (!eventDate) {
+    return 'Date TBD';
+  }
+
+  const parsedDate = new Date(`${eventDate}T00:00:00`);
+
+  if (Number.isNaN(parsedDate.getTime())) {
+    return 'Date TBD';
+  }
+
   return new Intl.DateTimeFormat('en-US', {
     weekday: 'long',
     month: 'short',
     day: 'numeric',
     year: 'numeric',
-  }).format(new Date(`${eventDate}T00:00:00`));
+  }).format(parsedDate);
 }
 
 function EventCard({ event }) {
